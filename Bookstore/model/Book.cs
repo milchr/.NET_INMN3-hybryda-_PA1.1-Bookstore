@@ -10,17 +10,9 @@ namespace Bookstore.model
         public int Id { get; set; }
         public string Title { get; set; }
         public string Desctipion { get; set; }
-        public string Author { get; set; }
+        public int AuthorId { get; set; }
+        public Author Author { get; set; }
         public DateTime PublishDate { get; set; }
 
-
-        public Book(int id, string title, string desctipion, string author, DateTime publishDate)
-        {
-            Id = id;
-            Title = title;
-            Desctipion = desctipion;
-            Author = author;
-            PublishDate = publishDate;
-        }
     }
 }
