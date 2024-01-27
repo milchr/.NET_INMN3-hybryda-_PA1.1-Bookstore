@@ -11,6 +11,6 @@ namespace Bookstore.Services
         Task<Book> CreateBook(Book book);
         Task<Book> UpdateBook(Book book);
         Task DeleteBook(int id);
-        Task<Page<Book>> GetPageBooks(string sortOrder, int? pageIndex, int pageSize);
+        Task<Page<Book>> GetPageBooks(string sortOrder, int? pageIndex, int pageSize, string filter);
     }
 }

@@ -7,7 +7,18 @@
 
 <h1>Books</h1>
 
-<a class="btn btn-primary" asp-page="AddBook">Add new book</a>
+<a class="btn btn-primary" asp-page="AddBook" style="margin-top: 2em">Add new book</a>
+
+<form asp-page="./Index" method="get" style="padding: 2em 0em 2em 0em">
+    <div class="form-actions no-color">
+        <p>
+            Find book by title:
+            <input type="text" name="filter" value="@Model.Filter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Clear filter</a>
+        </p>
+    </div>
+</form>
 
 <table class="table">
     <thead>

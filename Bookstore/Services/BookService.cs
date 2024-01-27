@@ -63,9 +63,14 @@ namespace Bookstore.Services
             return await _context.Books.Include(b => b.Author).FirstOrDefaultAsync(b => b.Id == id);
         }
 
-        public async Task<Page<Book>> GetPageBooks(string sortOrder, int? pageNumber, int pageSize)
+        public async Task<Page<Book>> GetPageBooks(string sortOrder, int? pageNumber, int pageSize, string filter)
         {
             var books = _context.Books.Include(b => b.Author).AsSingleQuery();
+
+            if (!String.IsNullOrEmpty(filter))
+            {
+                books = books.Where(b => b.Title.ToUpper().Contains(filter.ToUpper()));
+            }
 
             switch (sortOrder)
             {
