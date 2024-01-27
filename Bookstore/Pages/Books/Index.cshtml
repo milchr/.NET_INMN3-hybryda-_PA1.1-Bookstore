@@ -1,0 +1,33 @@
+﻿@page
+@model BookModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+
+<title>Books</title>
+<h1>Books</h1>
+<form method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+        @if (Model.Books != null)
+        {
+                foreach (var book in Model.Books)
+            {
+                <tr> 
+                    <td>@book.Title</td>
+                    <td>@book.Description </td>
+                    <td>@book.Author.FirstName @book.Author.LastName</td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+    <a asp-page="AddBook">Create New</a>
+</form>

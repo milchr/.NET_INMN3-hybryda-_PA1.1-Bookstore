@@ -1,0 +1,28 @@
+﻿@page
+@model Bookstore.Pages.Books.AddBookModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+
+
+<form method="post">
+    <label>
+        Title:
+        <input type="text" name="title" />
+    </label>
+
+    <label>
+        Description:
+        <input type="text" name="description" />
+    </label>
+    <label>
+        Author first name:
+        <input type="text" name="author.firstName" />
+    </label>
+    <label>
+        Author last name:
+        <input type="text" name="author.lastName" />
+    </label>
+
+    <input type="submit" />
+</form>
