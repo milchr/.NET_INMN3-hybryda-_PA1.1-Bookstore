@@ -20,10 +20,11 @@ namespace Bookstore.Pages.Books
 
         public async Task<IActionResult> OnPost()
         {
-            await Console.Out.WriteLineAsync("test");
+
             if (Book != null) {
-                var author = await _context.Authors
+                var author = await _context.Authors.Include(a => a.Books)
                 .FirstOrDefaultAsync(a => a.FirstName.Equals(Book.Author.FirstName) && a.LastName.Equals(Book.Author.LastName));
+
                 if (author != null)
                 {
                     author.Books.Add(Book);
