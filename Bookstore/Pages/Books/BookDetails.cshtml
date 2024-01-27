@@ -1,0 +1,32 @@
+﻿@page
+@model Bookstore.Pages.Books.BookDetailsModel
+@{
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Publish date</th>
+            <th>Author</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Book != null)
+        {
+            <tr>
+                <td>@Model.Book.Title</td>
+                <td>@Model.Book.Description </td>
+                <td>@Model.Book.PublishDate.ToString("dd MMMMM yyyy") </td>
+                <td>@Model.Book.Author.FirstName @Model.Book.Author.LastName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>

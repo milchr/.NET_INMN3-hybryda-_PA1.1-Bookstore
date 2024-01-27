@@ -6,25 +6,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bookstore.Pages.Books
 {
-    public class AddBookModel : PageModel
+    public class DeleteBookModel : PageModel
     {
         private readonly IBookService bookService;
 
-        public AddBookModel(IBookService bookService)
+        public DeleteBookModel(IBookService bookService)
         {
             this.bookService = bookService;
         }
 
         [BindProperty]
-        public Book? Book { get; set; }
+        public Book Book { get; set; }
 
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-
-            if (Book != null) {
-                await bookService.CreateBook(Book);
+            if (id == null)
+            {
+                return NotFound();
             }
+
+            await bookService.DeleteBook((int)id);
 
             return RedirectToPage("./Index");
         }

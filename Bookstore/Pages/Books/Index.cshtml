@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/"
 @model BookModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -37,7 +37,7 @@
                 <td>
                     <a asp-page="./EditBook" asp-route-id="@book.Id">Edit</a> |
                     <a asp-page="./BookDetails" asp-route-id="@book.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@book.Id">Delete</a>
+                    <a asp-page="./DeleteBook" asp-route-id="@book.Id">Delete</a>
                 </td>
             </tr>
         }

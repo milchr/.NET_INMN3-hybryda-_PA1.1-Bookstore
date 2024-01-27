@@ -1,21 +1,20 @@
 using Bookstore.data;
 using Bookstore.model;
+using Bookstore.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 
 namespace Bookstore.Pages
 {
     public class BookModel : PageModel
     {
         private static readonly int pageSize = 10;
-        private readonly BookstoreContext _context;
+        private readonly IBookService bookService;
 
-
-        public BookModel(BookstoreContext context)
+        public BookModel(IBookService bookService)
         {
-            _context = context;
+            this.bookService = bookService;
         }
 
         public string TitleSort { get; set; }
@@ -31,26 +30,7 @@ namespace Bookstore.Pages
             TitleSort = String.IsNullOrEmpty(sortOrder) ? "title" : "";
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
 
-
-            var books = _context.Books.Include(b => b.Author).AsSingleQuery();
-
-            switch (sortOrder)
-            {
-                case "title":
-                    books = books.OrderBy(s => s.Title);
-                    break;
-                case "Date":
-                    books = books.OrderBy(s => s.PublishDate);
-                    break;
-                case "date_desc":
-                    books = books.OrderByDescending(s => s.PublishDate);
-                    break;
-                default:
-                    books = books.OrderBy(s => s.Id);
-                    break;
-            }
-
-            BooksPage = await Page<Book>.CreateAsync(books.AsNoTracking(), pageIndex ?? 1, pageSize);
+            BooksPage = await bookService.GetPageBooks(sortOrder, pageIndex ?? 1, pageSize);
         }
 
     }

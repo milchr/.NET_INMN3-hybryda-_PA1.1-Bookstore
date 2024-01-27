@@ -1,14 +1,17 @@
 using Bookstore.data;
+using Bookstore.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
 builder.Services.AddDbContext<BookstoreContext>(options => {
     options.UseSqlServer("Server=.\\SQLEXPRESS;Database=Bookstore;Trusted_Connection=true;Encrypt=False;");
 });
 
+builder.Services.AddTransient<IBookService, BookService>();
 
 var app = builder.Build();
 
