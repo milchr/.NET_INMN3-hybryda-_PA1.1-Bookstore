@@ -2,34 +2,48 @@
 @model Bookstore.Pages.Books.AddBookModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
+    ViewData["Title"] = "Add new book";
 }
+<h1>Add new book</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">
+                    Title:
+                    <input class="form-control" type="text" name="title" />
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">
+                    Description:
+                    <input class="form-control" type="text" name="description" />
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">
+                    Publish date:
+                    <input class="form-control" type="date" name="publishDate" />
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">
+                    Author first name:
+                    <input class="form-control" type="text" name="author.firstName" />
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">
+                    Author last name:
+                    <input class="form-control" type="text" name="author.lastName" />
+                </label>
+            </div>
 
-
-<form method="post">
-    <label>
-        Title:
-        <input type="text" name="title" />
-    </label>
-
-    <label>
-        Description:
-        <input type="text" name="description" />
-    </label>
-    <label>
-        Publish date:
-        <input type="date" name="publishDate" />
-    </label>
-    <label>
-        Author first name:
-        <input type="text" name="author.firstName" />
-    </label>
-    <label>
-        Author last name:
-        <input type="text" name="author.lastName" />
-    </label>
-
-    <input type="submit" />
-</form>
+            <input type="submit" value="Add" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
 
 <div>
     <a asp-page="./Index">Back to List</a>
